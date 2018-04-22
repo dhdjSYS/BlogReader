@@ -1,0 +1,66 @@
+.delOldWindow-container{
+	margin-top:100px;
+}
+.delOldWindow-header{
+	-webkit-user-select: none;
+	-webkit-app-region: drag;
+}
+.delOldWindow-header-text{
+	cursor:default;
+	font-size:1.2em;
+}
+.delOldWindow-footer{
+	position:fixed;
+	bottom:15px;
+	left:0px;
+	right:0px;
+	margin:auto;
+	text-align:center;
+}
+.delOldWindow-passage{
+	margin-top:20px;
+}
+.delOldWindow-choices{
+	position:fixed;
+	bottom:40%;
+	left:0px;
+	right:0px;
+	margin:auto;
+	text-align:center;
+}
+.delOldWindow-choices-selecting{
+	position:fixed;
+	bottom:20%;
+	left:0px;
+	right:0px;
+	margin:auto;
+	text-align:center;
+}
+.delOldWindow-title{
+	margin-top:15px;
+	margin-bottom:15px;
+	color:#e9ecef;
+}
+.delOldWindow-title-selecting{
+	margin-top:15px;
+	margin-bottom:0px;
+	color:#e9ecef;
+}
+.delOldWindow-eg{
+	margin-top:5px;
+	margin-bottom:5px;
+}
+.delOldWindow-bg{
+	width:100%;
+	text-align:center;
+}
+.restart-app{
+	cursor:pointer;
+}
+.btn{
+	margin:5px;
+}
+body{
+	background-color:rgba(33,37,41,0.9);
+	z-index:-999;
+}
