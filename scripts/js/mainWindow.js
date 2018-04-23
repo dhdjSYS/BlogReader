@@ -44,6 +44,10 @@ function hereDoc(fn) {
     return fn.toString().split('\n').slice(1,-1).join('\n') + '\n'
 }
 
+function showLoading(){
+	jQuery("#title").html('<div class="loader mainWindow-passage-loading"><div class="loading"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>');
+}
+
 function openLink(url){
 	shell.openExternal(url)
 }
@@ -64,11 +68,13 @@ function renderBlog(blogName,blog){
 	//console.log(blog["feedUrls"])
 	currentBlog=blog
 	currentBlog["Rename"]=blogName
+	jQuery(mainTag).text('')
+	showLoading()
 	jQuery.getFeed({
 		url: blog["feedUrl"],
 		success: function(feed) {
+			jQuery("#title").html('<h3 class="mainWindow-intro-text mainWindow-passage-title">'+feed.title+'</h3>');
 			jQuery(mainTag).text('');
-			jQuery("#title").text(feed.title);
 			//console.log(feed)
 			var html = '';
 			for (var i = 0; i < feed.items.length && i <= passageMax; i++) {
@@ -81,8 +87,8 @@ function renderBlog(blogName,blog){
 }
 
  function renderArticle(feedUrl,verifyLink){
- 	jQuery("#title").text('加载中');
- 	jQuery(mainTag).text('');
+ 	jQuery(mainTag).text('')
+ 	showLoading()
  	jQuery.getFeed({
 		url: feedUrl,
 		success: function(article) {
@@ -105,8 +111,8 @@ function renderBlog(blogName,blog){
  }
 
  function renderReview(url,VerifyLink){
- 	jQuery("#title").text('加载中');
- 	jQuery(mainTag).text('');
+ 	jQuery(mainTag).text('')
+ 	showLoading()
 	jQuery.getFeed({
 		url: url+'feed/',
 		success: function(review) {
@@ -124,8 +130,8 @@ function renderBlog(blogName,blog){
 }
 
  function renderSearch() {
- 	jQuery("#title").text('加载中');
- 	jQuery(mainTag).text('');
+ 	jQuery(mainTag).text('')
+ 	showLoading()
 	jQuery.getFeed({
 		url: currentBlog["searchUrl"].replace('@',jQuery(searchTag).val()),
 		success: function(result) {

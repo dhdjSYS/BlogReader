@@ -16,13 +16,14 @@
       <title>BlogReader-阅读博文</title>
     </head>
     <body>
+      <div class="mainWindow-Background"></div>
       <nav class="navbar navbar-dark bg-dark navbar-expand-lg mainWindow-header fixed-top" id="nav">
   <a class="navbar-brand mainWindow-header-text" href="#">BlogReader-阅读</a>
 </nav>
 <div id="sidebarTag">
 <div class="page-wrapper chiller-theme toggled">
-        <nav id="sidebar" class="sidebar-wrapper">
-            <div class="sidebar-content">
+        <nav id="sidebar" class="sidebar-wrapper mainWindow-noBar">
+            <div class="sidebar-content mainWindow-noBar">
                 <div id="toggle-sidebar">
                     <div></div>
                     <div></div>
@@ -70,7 +71,7 @@
                         <li>
                             <a href="javascript:openLink('https://blog.dypme.cn/')">
                                 <i class="fa fa-book"></i>
-                                <span>作者:dhdj,版本:1.0.0</span>
+                                <span>作者:dhdj,版本:1.0.1</span>
                             </a>
                         </li>
                     </ul>
@@ -79,9 +80,11 @@
             </div>
         </nav>
         <!-- sidebar-wrapper  -->
-        <main class="page-content">
-        	<h3 class="mainWindow-intro-text mainWindow-passage-title" id="title"></h3>
-            <div class="container-fluid mainWindow-container" id="mainTag">
+        <main class="page-content mainWindow-noBottomBar">
+          <div id="title">
+            
+          </div>
+            <div class="container-fluid mainWindow-container mainWindow-noBar" id="mainTag">
             	<div style="text-align:right;margin-top:20px">
                 <div class="row">
                     <div class="form-group col-md-12">

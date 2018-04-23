@@ -4,6 +4,9 @@
 .delOldWindow-header{
 	-webkit-user-select: none;
 	-webkit-app-region: drag;
+	border:0px solid;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
 }
 .delOldWindow-header-text{
 	cursor:default;
@@ -54,6 +57,15 @@
 	width:100%;
 	text-align:center;
 }
+.delOldWindow-Background{
+	top:0px;
+	bottom:0px;
+	width:100%;
+	height:100%;
+	background-color:rgba(33,37,41,0.9);
+	z-index:-999;
+	position:fixed;
+}
 .restart-app{
 	cursor:pointer;
 }
@@ -61,6 +73,4 @@
 	margin:5px;
 }
 body{
-	background-color:rgba(33,37,41,0.9);
-	z-index:-999;
 }

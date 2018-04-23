@@ -4,12 +4,46 @@
  * 2018年4月20日
  * 作者: dhdj
  */
- const {app, BrowserWindow, ipcMain} = require('electron')
+ const {app, Menu, BrowserWindow, ipcMain} = require('electron')
  const Store = require('electron-store')
  const path = require('path')
  const url = require('url')
 
  const config = new Store()
+
+ const dockMenu = Menu.buildFromTemplate([
+    {
+      label: '添加RSS站点',
+      click () { createAddNewWindow(); }
+    },
+    {
+      label: '删除RSS站点',
+      click () { createDelOldWindow(); }
+    },
+    {
+      label: '阅读博客文章',
+      click () { createMainWindow(); }
+    }
+  ])
+
+ let DarwinMenu = Menu.buildFromTemplate([{
+        label: "Application",
+        submenu: [
+            { label: "关于BlogReader", selector: "orderFrontStandardAboutPanel:" },
+            { type: "separator" },
+            { label: "关闭程序", accelerator: "Command+Q", click: function() { app.quit(); }}
+        ]}, {
+        label: "编辑",
+        submenu: [
+            { label: "取消", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
+            { label: "重做", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
+            { type: "separator" },
+            { label: "剪贴", accelerator: "CmdOrCtrl+X", selector: "cut:" },
+            { label: "复制", accelerator: "CmdOrCtrl+C", selector: "copy:" },
+            { label: "粘贴", accelerator: "CmdOrCtrl+V", selector: "paste:" },
+            { label: "全选", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
+        ]}
+    ]);
 
  let addNewWindow = null
  let delOldWindow = null
@@ -17,7 +51,8 @@
  let mainWindowEvent
 
  function createAddNewWindow () {
-  addNewWindow = new BrowserWindow({width: 600, height: 400, resizable: false, titleBarStyle: 'hidden'})
+  if(addNewWindow===null){
+    addNewWindow = new BrowserWindow({width: 600, height: 400, resizable: false, alwaysOnTop: true, titleBarStyle: 'hidden', title: 'BlogReader-订阅新博客'})
 
   addNewWindow.loadURL(url.format({
       pathname: path.join(__dirname, 'addNewWindow.html'),
@@ -37,10 +72,12 @@
   addNewWindow.on('closed', () => {
       addNewWindow = null
     })
+  }
  }
 
  function createDelOldWindow () {
-  delOldWindow = new BrowserWindow({width: 600, height: 400, resizable: false, titleBarStyle: 'hidden'})
+  if(delOldWindow === null){
+    delOldWindow = new BrowserWindow({width: 600, height: 400, resizable: false, alwaysOnTop: true, titleBarStyle: 'hidden', title: 'BlogReader-取消订阅博客'})
 
   delOldWindow.loadURL(url.format({
       pathname: path.join(__dirname, 'delOldWindow.html'),
@@ -56,9 +93,11 @@
   delOldWindow.on('closed', () => {
       delOldWindow = null
     })
+  }
  }
  function createMainWindow () {
-    mainWindow = new BrowserWindow({width: 1200, height: 800, titleBarStyle: 'hidden'})
+  if(mainWindow === null){
+    mainWindow = new BrowserWindow({width: 1200, height: 800, titleBarStyle: 'hidden', title: 'BlogReader-阅读博文'})
   
     mainWindow.loadURL(url.format({
       pathname: path.join(__dirname, 'mainWindow.html'),
@@ -71,9 +110,14 @@
     mainWindow.on('closed', () => {
       mainWindow = null
     })
+  }
  }
 
  function startProgram(){
+  if(process.platform == 'darwin'){
+    Menu.setApplicationMenu(DarwinMenu);
+    app.dock.setMenu(dockMenu)
+  }
   createMainWindow()
   genNewConfig()
   /*

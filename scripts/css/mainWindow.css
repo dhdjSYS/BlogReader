@@ -1,10 +1,14 @@
 .mainWindow-container{
+	overflow:scroll;
 	margin-top:10px;
 }
 .mainWindow-header{
 	z-index:999;
 	-webkit-user-select: none;
 	-webkit-app-region: drag;
+	border:0px solid;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
 }
 .mainWindow-header-text{
 	cursor:default;
@@ -34,9 +38,28 @@
 	margin-bottom:0px;
 	text-align:center;
 }
-body{
+.mainWindow-passage-loading{
+	margin-top:35%;
+	margin-bottom:0px;
+	text-align:center;
+}
+.mainWindow-noBar{
+	overflow:hidden;
+}
+.mainWindow-noBottomBar{
+	overflow-y:hidden;
+	overflow-x:scroll;
+}
+.mainWindow-Background{
+	top:0px;
+	bottom:0px;
+	width:100%;
+	height:100%;
 	background-color:rgba(33,37,41,0.9);
 	z-index:-999;
+	position:fixed;
+}
+body{
 }
 img {
     max-width: 100%;
@@ -44,3 +67,53 @@ img {
     display: block;
     margin: 0 auto;
 }
+.alignnone{
+	max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+.loader{
+    height: 200px;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+}
+@-webkit-keyframes loading{
+    0%{
+        transform: scale(1);
+    }
+    50%{
+        transform: scale(0.4);
+    }
+    100%{
+        transform: scale(1);
+    }
+}
+.loading i{
+    display: inline-block;
+    width: 8px;
+    height: 70px;
+    margin: 0 4px;
+    background: #fff;
+    border-radius: 2px;
+    -webkit-animation: loading 0.8s ease-in 0.1s infinite;
+}
+.loading i:nth-child(1){
+    -webkit-animation: loading 0.8s ease-in 0.1s infinite;
+}
+.loading i:nth-child(2){
+    -webkit-animation: loading 0.8s ease-in 0.2s infinite;
+}   
+.loading i:nth-child(3){
+    -webkit-animation: loading 0.8s ease-in 0.3s infinite;
+}   
+.loading i:nth-child(4){
+    -webkit-animation: loading 0.8s ease-in 0.4s infinite;
+}   
+.loading i:nth-child(5){
+    -webkit-animation: loading 0.8s ease-in 0.5s infinite;
+} 
+.loading i:nth-child(6){
+    -webkit-animation: loading 0.8s ease-in 0.6s infinite;
+} 
