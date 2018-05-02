@@ -1,12 +1,12 @@
 {
   "name": "blogreader",
   "productName": "blogreader",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "用更快的速度,更加洁净的访问博客文章以及RSS文章",
   "main": "scripts/daemon.js",
   "scripts": {
     "start": "electron-forge start",
-    "package": "electron-forge package --platform=darwin --arch=x64 && electron-forge package --platform=linux --arch=x64 && electron-forge package --platform=linux --arch=ia32 && electron-forge package --platform=linux --arch=armv7l && electron-forge package --platform=linux --arch=arm64 && electron-forge package --platform=linux --arch=mips64el && electron-forge package --platform=win32 --arch=x64 && electron-forge package --platform=win32 --arch=ia32",
+    "package": "rm -rf out && electron-forge package --platform=darwin --arch=x64 && electron-forge package --platform=linux --arch=x64 && electron-forge package --platform=linux --arch=ia32 && electron-forge package --platform=linux --arch=armv7l && electron-forge package --platform=linux --arch=arm64 && electron-forge package --platform=linux --arch=mips64el && electron-forge package --platform=win32 --arch=x64 && electron-forge package --platform=win32 --arch=ia32 && cd out && zip -r BlogReader-RSS阅读器-MacOS.zip /Users/dhdj/node/src/BlogReader/out/blogreader-darwin-x64 && zip -r BlogReader-RSS阅读器-Linux-arm64.zip /Users/dhdj/node/src/BlogReader/out/blogreader-linux-arm64 && zip -r BlogReader-RSS阅读器-Linux-armv7l.zip /Users/dhdj/node/src/BlogReader/out/blogreader-linux-armv7l && zip -r BlogReader-RSS阅读器-Linux-ia32.zip /Users/dhdj/node/src/BlogReader/out/blogreader-linux-ia32 && zip -r BlogReader-RSS阅读器-Linux-mips64el.zip /Users/dhdj/node/src/BlogReader/out/blogreader-linux-mips64el && zip -r BlogReader-RSS阅读器-Linux-x64.zip /Users/dhdj/node/src/BlogReader/out/blogreader-linux-x64 && zip -r BlogReader-RSS阅读器-Windows-ia32.zip /Users/dhdj/node/src/BlogReader/out/blogreader-win32-ia32 && zip -r BlogReader-RSS阅读器-Windows-x64.zip /Users/dhdj/node/src/BlogReader/out/blogreader-win32-x64",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
     "lint": "eslint src --color"

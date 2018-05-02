@@ -44,6 +44,13 @@ function hereDoc(fn) {
     return fn.toString().split('\n').slice(1,-1).join('\n') + '\n'
 }
 
+function doARelace(){
+	jQuery("a").each(function(){
+				if(jQuery(this).attr('href') !== undefined && jQuery(this).attr('href') !== '' && jQuery(this).attr('href') !== '#'){
+					jQuery(this).attr('href','javascript:openLink(\''+jQuery(this).attr('href')+'\')')
+				}
+  			});
+}
 function showLoading(){
 	jQuery("#title").html('<div class="loader mainWindow-passage-loading"><div class="loading"><i></i><i></i><i></i><i></i><i></i><i></i></div></div>');
 }
@@ -56,9 +63,10 @@ function renderBlogList(){
 	let html = ''
 	jQuery('#blogList').text('')
 	for(var blogName in blogs){
-		html += '<li><a href="javascript:renderBlog(\''+blogName+'\',\''+base.encode(JSON.stringify(blogs[blogName]))+'\')"><i class="fa fa-globe"></i><span>'+blogName+'</span></a></li>'
+		html += '<li><a href=\'#\' onclick="javascript:renderBlog(\''+blogName+'\',\''+base.encode(JSON.stringify(blogs[blogName]))+'\')"><i class="fa fa-globe"></i><span>'+blogName+'</span></a></li>'
 	}
 	jQuery('#blogList').append(html)
+	doARelace()
 }
 
 function renderBlog(blogName,blog){
@@ -79,9 +87,10 @@ function renderBlog(blogName,blog){
 			var html = '';
 			for (var i = 0; i < feed.items.length && i <= passageMax; i++) {
 				var item = feed.items[i];
-				html += '<div class="card mainWindow-passage" style="width: 100%;"><div class="card-body"><h5 class="card-title">' + item.title + '</h5><h6 class="card-subtitle mb-2 text-muted">' + item.updated + '</h6><p class="card-text">' + item.description + '</p><a href="javascript:renderArticle(\''+blog["feedUrl"]+'\',\''+item.link+'\')" class="card-link">查看文章</a><a href="javascript:openLink(\''+item.link+'\')" class="card-link">在游览器里查看</a></div></div>'
+				html += '<div class="card mainWindow-passage" style="width: 100%;"><div class="card-body"><h5 class="card-title">' + item.title + '</h5><h6 class="card-subtitle mb-2 text-muted">' + item.updated + '</h6><p class="card-text">' + item.description + '</p><a href=\'#\' onclick="javascript:renderArticle(\''+blog["feedUrl"]+'\',\''+item.link+'\')" class="card-link">查看文章</a><a href=\'#\' onclick="javascript:openLink(\''+item.link+'\')" class="card-link">在游览器里查看</a></div></div>'
 			}
 			jQuery(mainTag).append(html)
+			doARelace()
 		}
 	})
 }
@@ -99,12 +108,13 @@ function renderBlog(blogName,blog){
 			for (var i = 0; i < article.items.length && i <= passageMax; i++) {
 				var item = article.items[i];
 				if(decodeURI(item.link)==decodeURI(verifyLink)){
-					html='<div class="row justify-content-xs-center justify-content-sm-center justify-content-md-center justify-content-lg-center justify-content-xl-center"><div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8"><div class="card mainWindow-passage" style="width: 100%;"><div class="card-body"><h5 class="card-title">' + item.title + '</h5><h6 class="card-subtitle mb-2 text-muted">' + item.updated + '</h6><div class="card-text passage-text" id="passage-text">' + item.content + '</div><a href="javascript:renderReview(\''+item.link+'\',\''+verifyLink+'\')" class="card-link">查看评论</a><a href="javascript:openLink(\''+item.link+'\')" class="card-link">在游览器里查看</a></div></div></div></div>'
+					html='<div class="row justify-content-xs-center justify-content-sm-center justify-content-md-center justify-content-lg-center justify-content-xl-center"><div class="col-xs-12 col-sm-12 col-md-10 col-lg-8 col-xl-8"><div class="card mainWindow-passage" style="width: 100%;"><div class="card-body"><h5 class="card-title">' + item.title + '</h5><h6 class="card-subtitle mb-2 text-muted">' + item.updated + '</h6><div class="card-text passage-text" id="passage-text">' + item.content + '</div><a href=\'#\' onclick="javascript:renderReview(\''+item.link+'\',\''+verifyLink+'\')" class="card-link">查看评论</a><a href=\'#\' onclick="javascript:openLink(\''+item.link+'\')" class="card-link">在游览器里查看</a></div></div></div></div>'
 				}
 				//console.log(decodeURI(item.link))
 				//console.log(decodeURI(verifyLink))
 			}
 			jQuery(mainTag).append(html)
+			doARelace()
 			//changeImgSize()
 		}
 	})
@@ -122,9 +132,10 @@ function renderBlog(blogName,blog){
 			var html = '';
 			for (var i = 0; i < review.items.length && i <= passageMax; i++) {
 				var item = review.items[i];
-				html += '<div class="card mainWindow-passage" style="width: 100%;"><div class="card-body"><h5 class="card-title">' + item.title + '</h5><h6 class="card-subtitle mb-2 text-muted">' + item.updated + '</h6><p class="card-text">' + item.description + '</p><a href="javascript:renderArticle(\''+currentBlog["feedUrl"]+'\',\''+VerifyLink+'\')" class="card-link">返回文章</a><a href="javascript:renderBlog(\''+currentBlog["Rename"]+'\',\''+base.encode(JSON.stringify(currentBlog))+'\')" class="card-link">返回主页</a></div></div>'
+				html += '<div class="card mainWindow-passage" style="width: 100%;"><div class="card-body"><h5 class="card-title">' + item.title + '</h5><h6 class="card-subtitle mb-2 text-muted">' + item.updated + '</h6><p class="card-text">' + item.description + '</p><a href=\'#\' onclick="javascript:renderArticle(\''+currentBlog["feedUrl"]+'\',\''+VerifyLink+'\')" class="card-link">返回文章</a><a href=\'#\' onclick="javascript:renderBlog(\''+currentBlog["Rename"]+'\',\''+base.encode(JSON.stringify(currentBlog))+'\')" class="card-link">返回主页</a></div></div>'
 			}
 			jQuery(mainTag).append(html)
+			doARelace()
 		}
 	})
 }
@@ -141,9 +152,10 @@ function renderBlog(blogName,blog){
 			var html = '';
 			for (var i = 0; i < result.items.length && i <= passageMax; i++) {
 				var item = result.items[i];
-				html += '<div class="card mainWindow-passage" style="width: 100%;"><div class="card-body"><h5 class="card-title">' + item.title + '</h5><h6 class="card-subtitle mb-2 text-muted">' + item.updated + '</h6><p class="card-text">' + item.description + '</p><a href="javascript:renderArticle(\''+currentBlog["searchUrl"].replace('@',jQuery(searchTag).val())+'\',\''+item.link+'\')" class="card-link">查看文章</a><a href="javascript:openLink(\''+item.link+'\')" class="card-link">在游览器里查看</a></div></div>'
+				html += '<div class="card mainWindow-passage" style="width: 100%;"><div class="card-body"><h5 class="card-title">' + item.title + '</h5><h6 class="card-subtitle mb-2 text-muted">' + item.updated + '</h6><p class="card-text">' + item.description + '</p><a href=\'#\' onclick="javascript:renderArticle(\''+currentBlog["searchUrl"].replace('@',jQuery(searchTag).val())+'\',\''+item.link+'\')" class="card-link">查看文章</a><a href=\'#\' onclick="javascript:openLink(\''+item.link+'\')" class="card-link">在游览器里查看</a></div></div>'
 			}
 			jQuery(mainTag).append(html)
+			doARelace()
 		}
 	})
  }

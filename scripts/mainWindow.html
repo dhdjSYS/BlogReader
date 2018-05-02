@@ -36,7 +36,7 @@
                 <div class="sidebar-search">
                     <div>
                         <div class="input-group">
-                            <input type="text" class="form-control search-menu" placeholder="搜索文章" id="search" onkeypress="javascript:renderSearch()" onkeydown="javascript:renderSearch()" onkeyup="javascript:renderSearch()">
+                            <input type="text" class="form-control search-menu" placeholder="搜索文章" id="search" onkeyup="javascript:renderSearch()">
                             <div class="input-group-append">
                                 <span class="input-group-text" onclick="javascript:renderSearch()">
                                     <i class="fa fa-search" aria-hidden="true"></i>
@@ -57,21 +57,21 @@
                             <span>更多</span>
                         </li>
                         <li>
-                            <a href="javascript:openDelOldWindow()">
+                            <a href='#' onclick="javascript:openDelOldWindow()">
                                 <i class="fa fa-calendar"></i>
                                 <span>删除RSS站点</span>
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:openAddNewWindow()">
+                            <a href='#' onclick="javascript:openAddNewWindow()">
                                 <i class="fa fa-folder"></i>
                                 <span>添加RSS站点</span>
                             </a>
                         </li>
                         <li>
-                            <a href="javascript:openLink('https://blog.dypme.cn/')">
+                            <a href='#' onclick="javascript:openLink('https://blog.dypme.cn/')">
                                 <i class="fa fa-book"></i>
-                                <span>作者:dhdj,版本:1.0.1</span>
+                                <span>作者:dhdj,版本:1.0.2</span>
                             </a>
                         </li>
                     </ul>
